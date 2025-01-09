@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Art and Architecture of India">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Art and Architectures</title>
+    <style>
+        body {
+            font-family: "Georgia", serif;
+            background: #F8F8FF;
+            margin: 0;
+            padding: 0;
+            color: #003366;
+        }
+
+        nav {
+            background-color: #003366;
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            color: #ffffff;
+            font-size: 1.2em;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin: 0 25px;
+            transition: color 0.3s, border-bottom 0.3s;
+            text-align: center;
+        }
+
+        nav a:hover {
+            color: #10246c;
+            border-bottom: 2px solid #cd0d0d;
+            border-radius: 8px;
+        }
+
+        header {
+            background: url(https://t3.ftcdn.net/jpg/08/99/94/68/360_F_899946849_jZVlCV5wNtSavrF6RTMWKpYTL785F6Bv.jpg) no-repeat;
+            background-size: cover;
+            color: #FFD700;
+            text-align: center;
+            padding: 50px 20px;
+            text-shadow: 2px 2px 5px #000;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1.5em;
+        }
+
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            width: 85%;
+            background: rgba(255, 223, 186, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            text-align: center;
+            color: #003366;
+        }
+
+        section div{
+            width: 60%;
+        }
+
+        section:hover{
+            background-color: #d2fdffcd;
+        }
+
+        blockquote {
+            font-size: 1.2em;
+            text-align: left;
+            margin: 20px 0;
+            color: #006400;
+            border-left: 5px solid #003366;
+            padding-left: 15px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+            padding: 0 250px;
+        }
+
+        .gallery picture {
+            display: block;
+            margin: 0 auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            max-height: 500px;
+            object-fit: cover;
+        }
+
+        .gallery:hover{
+            transform: scale(1.05);
+        }
+
+        figcaption {
+            text-align: center;
+            font-style: italic;
+            color: #696969;
+            margin-top: 10px;
+        }
+
+        .center{
+	    display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width: 50%;
+	    }
+
+        legend {
+            font-weight: bold;
+            color: #003366;
+        }
+
+        span {
+            font-weight: bold;
+            color: #006400;
+        }
+
+        a:hover{
+            background-color: #F8F8FF;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="homepage.html"><i class='bx bxs-home'></i>Home</a>
+        <a href="arts.html">Art and Architecture</a>
+        <a href="festivals.html">Festivals</a>
+        <a href="scripts.html">Languages and Scripts</a>
+    </nav>
+
+<header>
+    <h1>Art and Architectures of India</h1>
+    
+</header>
+
+<section>
+    <blockquote>Taj Mahal</blockquote>
+    <p>The Taj Mahal is undoubtedly one of India’s most impressive pieces of architecture worldwide. For years, it has been the face of Indian architecture for people worldwide. Built-in 1653 on the orders of the Mughal ruler Shahjahan as a resting place for his beloved queen Mumtaj Mahal, it symbolizes love.</p>
+    <p>Considered one of the finest examples of Mughal architecture, the white marble building comprises a square plinth with a central structure topped by a vast dome and surrounded by four minarets at each corner. It is considered one of the world’s seven wonders in the modern era. It attracts about 3 million tourists annually, thus being a hotshot for visitors globally.</p>
+    <div class="gallery">
+        <figure>
+            <picture>
+                <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRhaiUyMG1haGFsfGVufDB8fDB8fHww" alt="Taj Mahal">
+            </picture>
+            <figcaption>Taj Mahal</figcaption>
+        </figure>
+    </div>
+</section>
+
+<section>
+    <blockquote>Sun Temple, Konark</blockquote>
+    <p>Lying on the Bay of Bengal coast is considered one of the best examples of Dravidian Architecture. Also known as the Black Pagoda, it is regarded as one of the grandest temples in India. Built in the 13th century, it has a form of a giant chariot with twelve intricately crafted wheels led by seven horses. A true marvel that shows the advanced craftsmanship and the love and devotion of Indian Architecture.</p>
+    <div class="gallery">
+        <figure>
+            <picture>
+                <img src="https://cdn.pixabay.com/photo/2021/11/19/04/51/temple-6808093_640.jpg" alt="Sun Temple">
+            </picture>
+            <figcaption>Sun Temple</figcaption>
+        </figure>
+    </div>
+</section>
+
+<section>
+    <blockquote>Ajanta-Ellora Caves</blockquote>
+    <p>Built from the 2nd century B.C. to the 6th century A.D., these caves are the finest examples of rock-cut caves. Honed out of volcanic ballistic formations while existing in a linear pattern, there are 34 caves containing the remnants of Buddhist, Hindu, and Jain temples.</p>
+    <p>These walls are equipped with engravings showing the life of Lord Buddha. The purpose of these caves was to provide a sanctuary for the monks to meditate. Ellora, in particular, is famous for the world’s most extensive monolithic excavation leading to the discovery of the great Kailasa temple.</p>
+    <div class="gallery">
+        <figure>
+            <picture>
+                <img src="https://t4.ftcdn.net/jpg/02/28/13/25/360_F_228132543_UnVy7HkGlvTdFpbklHqi3TBdVtJilkv5.jpg" alt="Ajanta-Ellora Caves">
+            </picture>
+            <figcaption>Ajanta-Ellora Caves</figcaption>
+        </figure>
+    </div>
+</section>
+
+<section>
+    <blockquote>Madhubani Painting</blockquote>
+    <p>Also known as Mithila Painting, Madhubani is an art form that originated in the Madhubani district of Bihar. It is not a modern art form, Madhubani Paintings have been in practice since Satya Yuga (in Hinduism there are four yugas, and Satya Yuga is the first of all four and lasted for 1,728,000 years).</p>
+    <p>These paintings are mostly practiced by women and they use geometrical shapes in the paintings. Madhubani paintings are devoted to god, flora, and fauna.There is often a representation of god surrounded by women, trees, and nature in this art. This illustrates their desire to be one with the god self.</p>
+    <div class="gallery">
+        <figure>
+            <picture>
+                <img src="https://m.media-amazon.com/images/I/91mjhFbzpHL.jpg" alt="Madhubani Painting">
+            </picture>
+            <figcaption>Madhubani Painting</figcaption>
+        </figure>
+    </div>
+</section>
+
+<section>
+    <blockquote> Miniature Painting</blockquote>
+    <p>This art form originated around the 16th and 17th centuries during the Mughal era, but Miniature Paintings’ history can be traced a long time back to the 7th century.The name miniature is because of its size, and the components of this art form are mainly the scenes of courts, hunting, battlegrounds, receptions, etc.The paintings include three different art styles: Indian, Persian, and Islamic.</p>
+    <div class="gallery">
+        <figure>
+            <picture>
+                <img src="https://as2.ftcdn.net/v2/jpg/00/33/52/99/1000_F_33529904_b6PhZqDeCSkcBv0uObsLS0Q7MCR5HBYi.jpg" alt=" Miniature Painting">
+            </picture>
+            <figcaption> Miniature Painting</figcaption>
+        </figure>
+    </div>
+</section>
+</body>
+</html>
