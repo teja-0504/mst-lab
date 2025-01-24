@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            background-color: #003366;
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            font-size: 1.2em;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin: 0 25px;
+            color: white;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .quiz-container {
+            text-align: center;
+            padding: 50px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            margin-top: 30px;
+        }
+
+        button {
+            margin: 10px;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 1.1em;
+            border-radius: 5px;
+            border: none;
+            width: 80%;
+        }
+
+        #next-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #result-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .options button {
+            width: 90%;
+            margin: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #2196F3;
+            color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="stopwatch.html">STOP WATCH</a>
+        <a href="todo.html">TODO List</a>
+        <a href="weather.html">Weather</a>
+        <a href="quiz.html">Quiz</a>
+    </nav>
+
+    <div class="quiz-container" id="quiz-container">
+        <p id="question"></p>
+        <div class="options" id="options"></div>
+        <button id="next-btn" onclick="nextQuestion()" style="display: none;">Next Question</button>
+        <button id="result-btn" onclick="showResult()" style="display: none;">Show Result</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the capital of France?",
+                options: ["Paris", "London", "Berlin", "Madrid"],
+                answer: "Paris",
+            },
+            {
+                question: "Who wrote 'Hamlet'?",
+                options: ["Shakespeare", "Tolstoy", "Homer", "Dante"],
+                answer: "Shakespeare",
+            },
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        // Load the first question
+        loadQuestion();
+
+        function loadQuestion() {
+            const quizContainer = document.getElementById("quiz-container");
+            const q = questions[currentQuestion];
+            document.getElementById("question").textContent = q.question;
+            document.getElementById("options").innerHTML = q.options
+                .map(
+                    (option) => `<button onclick="checkAnswer('${option}')">${option}</button>`
+                )
+                .join("");
+            // Hide the Next Question button initially
+            document.getElementById("next-btn").style.display = "none";
+        }
+
+        function checkAnswer(answer) {
+            const correctAnswer = questions[currentQuestion].answer;
+            if (answer === correctAnswer) {
+                score++;
+                alert("Correct!");
+            } else {
+                alert("Wrong!");
+            }
+            // Show the Next Question button after answering
+            document.getElementById("next-btn").style.display = "inline-block";
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            const quizContainer = document.getElementById("quiz-container");
+            quizContainer.innerHTML = `<p>Quiz Over! Your score: ${score}/${questions.length}</p>`;
+            // Hide the next question button and show the result button
+            document.getElementById("next-btn").style.display = "none";
+            document.getElementById("result-btn").style.display = "none";
+        }
+    </script>
+</body>
+</html>
