@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            background-color: #003366;
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            font-size: 1.2em;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin: 0 25px;
+            color: white;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-top: 30px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px;
+            cursor: pointer;
+            width: 85%;
+            border-radius: 5px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #weatherInfo {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        #loading {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="stopwatch.html">Stopwatch</a>
+        <a href="todo.html">Todo List</a>
+        <a href="weather.html">Weather</a>
+    </nav>
+
+    <div class="container">
+        <input id="city" placeholder="Enter city name" />
+        <button onclick="getWeather()">Get Weather</button>
+        <div id="loading">Loading...</div>
+        <div id="weatherInfo"></div>
+    </div>
+
+    <script>
+        async function getWeather() {
+            const city = document.getElementById("city").value.trim();
+
+            // Input validation: Ensure the user entered a city
+            if (!city) {
+                alert("Please enter a city name!");
+                return;
+            }
+
+            const apiKey = "YOUR_API_KEY"; // Get it from openweathermap.org
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            // Show loading indicator
+            document.getElementById("loading").style.display = "block";
+            document.getElementById("weatherInfo").innerHTML = ""; // Clear previous weather info
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                // Hide loading indicator
+                document.getElementById("loading").style.display = "none";
+
+                if (data.cod !== 200) {
+                    // If the city is not found
+                    document.getElementById("weatherInfo").innerHTML = `<p>City not found! Please check the name.</p>`;
+                } else {
+                    // Display weather info
+                    const weatherInfo = `
+                        <p><strong>City:</strong> ${data.name}</p>
+                        <p><strong>Temperature:</strong> ${data.main.temp}°C</p>
+                        <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
+                        <p><strong>Condition:</strong> ${data.weather[0].description}</p>
+                    `;
+                    document.getElementById("weatherInfo").innerHTML = weatherInfo;
+                }
+            } catch (error) {
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("weatherInfo").innerHTML = `<p>Error fetching data. Please try again later.</p>`;
+            }
+        }
+    </script>
+
+</body>
+</html>
