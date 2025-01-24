@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        nav {
+            background-color: #003366;
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        nav a {
+            font-size: 1.2em;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin: 0 25px;
+            color: white;
+        }
+
+        nav a:hover {
+            color: #FFD700;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-top: 30px;
+        }
+
+        #dom-msg {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            width: 120px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        #id-clear {
+            background-color: #f44336;
+            color: white;
+        }
+
+        #sub-id {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="pn.html">Prime Number</a>
+        <a href="oe.html">Odd or Even</a>
+        <a href="f.html">Fibonacci Series</a>
+        <a href="ff.html">Factorial Calculator</a>
+    </nav>
+
+    <!-- Factorial Calculator Section -->
+    <div class="container">
+        <h1>Factorial Calculator</h1>
+        <input type="number" id="input-id" placeholder="Enter a number" />
+        <br>
+        <button id="sub-id">Calculate</button>
+        <button id="id-clear">Clear</button>
+        <div id="dom-msg">Result</div>
+    </div>
+
+    <script>
+        // Function to calculate factorial
+        function factorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            return n * factorial(n - 1);
+        }
+
+        // Event listener for Calculate button
+        document
+            .getElementById("sub-id")
+            .addEventListener("click", function () {
+                let num = document.getElementById("input-id").value;
+                let resultMsg = '';
+
+                if (num === '' || num <= 0) {
+                    resultMsg = 'Please enter a positive number.';
+                } else {
+                    let result = factorial(num);
+                    resultMsg = "Factorial of " + num + " is: " + result;
+                }
+
+                document.getElementById("dom-msg").innerHTML = resultMsg;
+            });
+
+        // Event listener for Clear button
+        document.getElementById("id-clear")
+            .addEventListener("click", () => {
+                document.getElementById("input-id").value = "";
+                document.getElementById("dom-msg").innerHTML = "Result";
+            });
+    </script>
+</body>
+</html>
