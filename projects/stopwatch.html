@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            background: url('https://www.techandall.com/wp-content/uploads/2013/10/techandall_wallpaper_1.jpg') no-repeat center center/cover;
+            color: #ffffff;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            font-size: 1.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin: 0 15px;
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ff9800;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 120px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            width: 350px;
+        }
+
+        #timer {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            letter-spacing: 2px;
+        }
+
+        button {
+            margin: 10px 5px;
+            padding: 12px 20px;
+            cursor: pointer;
+            width: 100px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            font-size: 1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        #start-btn {
+            background: #4caf50;
+            color: white;
+        }
+
+        #pause-btn {
+            background: #ff9800;
+            color: white;
+        }
+
+        #reset-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        button:focus {
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="stopwatch.html">Stop Watch</a>
+        <a href="todo.html">TODO List</a>
+        <a href="weather.html">Weather</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="countdown.html">Countdown</a>
+        <a href="darktoggle.html">Dark Toggle</a>
+    </nav>
+
+    <div class="container">
+        <h1>Stopwatch</h1>
+        <p id="timer">00:00:00</p>
+        <button id="start-btn" onclick="startTimer()">Start</button>
+        <button id="pause-btn" onclick="pauseTimer()">Pause</button>
+        <button id="reset-btn" onclick="resetTimer()">Reset</button>
+    </div>
+
+    <script>
+        let interval;
+        let totalSeconds = 0;
+
+        function formatTime(seconds) {
+            const hrs = String(Math.floor(seconds / 3600)).padStart(2, '0');
+            const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+            const secs = String(seconds % 60).padStart(2, '0');
+            return `${hrs}:${mins}:${secs}`;
+        }
+
+        function startTimer() {
+            if (!interval) {
+                interval = setInterval(() => {
+                    totalSeconds++;
+                    document.getElementById("timer").innerText = formatTime(totalSeconds);
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(interval);
+            interval = null;
+        }
+
+        function resetTimer() {
+            clearInterval(interval);
+            interval = null;
+            totalSeconds = 0;
+            document.getElementById("timer").innerText = "00:00:00";
+        }
+    </script>
+
+</body>
+</html>

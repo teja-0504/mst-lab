@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Checker</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            background: url('https://www.techandall.com/wp-content/uploads/2013/10/techandall_wallpaper_1.jpg') no-repeat center center/cover;
+            color: #ffffff;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            font-size: 1.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin: 0 15px;
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ff9800;
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            width: 400px;
+            margin-top: 100px;
+        }
+
+        input {
+            margin: 15px 0;
+            padding: 12px;
+            width: 90%;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            font-size: 1em;
+        }
+
+        input::placeholder {
+            color: #ffffff;
+            opacity: 0.8;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #FFD700;
+        }
+
+        button {
+            margin: 10px 5px;
+            padding: 12px;
+            width: 90%;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #loading {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #loading span {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 5px;
+            border-radius: 50%;
+            background-color: #FFD700;
+            animation: bounce 1s infinite alternate;
+        }
+
+        #loading span:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        #loading span:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        @keyframes bounce {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-15px);
+            }
+        }
+
+        #weatherInfo {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        #weatherInfo p {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="stopwatch.html">Stop Watch</a>
+        <a href="todo.html">TODO List</a>
+        <a href="weather.html">Weather</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="countdown.html">Countdown</a>
+        <a href="darktoggle.html">Dark Toggle</a>
+    </nav>
+
+    <div class="container">
+        <h1>Weather Checker</h1>
+        <input id="city" placeholder="Enter city name" />
+        <button onclick="getWeather()">Get Weather</button>
+        <div id="loading">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div id="weatherInfo"></div>
+    </div>
+
+    <script>
+        async function getWeather() {
+            const city = document.getElementById("city").value.trim();
+
+            if (!city) {
+                alert("Please enter a city name!");
+                return;
+            }
+
+            const apiKey = "bd5e378503939ddaee76f12ad7a97608"; // Replace with your OpenWeather API key
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+            const loading = document.getElementById("loading");
+            const weatherInfo = document.getElementById("weatherInfo");
+
+            loading.style.display = "flex";
+            weatherInfo.innerHTML = "";
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                loading.style.display = "none";
+
+                if (data.cod !== 200) {
+                    weatherInfo.innerHTML = `<p>City not found! Please check the name.</p>`;
+                } else {
+                    weatherInfo.innerHTML = `
+                        <p><strong>City:</strong> ${data.name}</p>
+                        <p><strong>Temperature:</strong> ${data.main.temp}°C</p>
+                        <p><strong>Humidity:</strong> ${data.main.humidity}%</p>
+                        <p><strong>Condition:</strong> ${data.weather[0].description}</p>
+                    `;
+                }
+            } catch (error) {
+                loading.style.display = "none";
+                weatherInfo.innerHTML = `<p>Error fetching data. Please try again later.</p>`;
+            }
+        }
+    </script>
+
+</body>
+</html>

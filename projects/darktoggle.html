@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dark Mode Toggle</title>
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      transition: background-color 0.3s, color 0.3s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      height: 100vh;
+      padding: 50px;
+    }
+
+    .dark-mode {
+      background-color: #333;
+      color: #fff;
+    }
+
+    nav {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: url('https://www.techandall.com/wp-content/uploads/2013/10/techandall_wallpaper_1.jpg') no-repeat center/cover;
+        }
+
+        nav a {
+            font-size: 1.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin: 0 15px;
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ff9800;
+        }
+
+    button {
+      cursor: pointer;
+      font-size: 1em;
+      padding: 10px 20px;
+      margin: 20px;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: #fff;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    button:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="stopwatch.html">Stop Watch</a>
+        <a href="todo.html">TODO List</a>
+        <a href="weather.html">Weather</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="countdown.html">Countdown</a>
+        <a href="darktoggle.html">Dark Toggle</a>
+    </nav>
+  <button onclick="toggleDarkMode()" aria-label="Toggle dark mode">Toggle Dark Mode</button>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      const isDarkMode = document.body.classList.contains("dark-mode");
+      localStorage.setItem("darkMode", isDarkMode);
+    }
+
+    window.onload = () => {
+      if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+      }
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+            background: url('https://www.techandall.com/wp-content/uploads/2013/10/techandall_wallpaper_1.jpg') no-repeat center center/cover;
+            color: #ffffff;
+        }
+
+        nav {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 0;
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            font-size: 1.1em;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin: 0 15px;
+            color: #ffffff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ff9800;
+        }
+
+        .quiz-container {
+            text-align: center;
+            padding: 30px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            color: #ffffff;
+            width: 400px;
+            margin-top: 120px;
+        }
+
+        .quiz-container p {
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+
+        .progress-bar {
+            background-color: #4caf50;
+            height: 10px;
+            width: 0%;
+            border-radius: 10px;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .progress-container {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            height: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .feedback {
+            font-size: 1em;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        button {
+            margin: 10px 5px;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 8px;
+            border: none;
+            width: 90%;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        }
+
+        #next-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #result-btn {
+            background-color: #FFD700;
+            color: white;
+        }
+
+        .options button {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .options button:hover {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal p {
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        .modal button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="home.html">Home</a>
+        <a href="stopwatch.html">Stop Watch</a>
+        <a href="todo.html">TODO List</a>
+        <a href="weather.html">Weather</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="countdown.html">Countdown</a>
+        <a href="darktoggle.html">Dark Toggle</a>
+    </nav>
+
+    <div class="quiz-container" id="quiz-container">
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <h1>Quiz</h1>
+        <p id="question"></p>
+        <p class="feedback" id="feedback"></p>
+        <div class="options" id="options"></div>
+        <p>Score: <span id="score-display">0</span></p>
+        <button id="next-btn" onclick="nextQuestion()" style="display: none;">Next Question</button>
+    </div>
+
+    <div class="modal" id="result-modal">
+        <p id="result-message"></p>
+        <button onclick="restartQuiz()">Restart Quiz</button>
+    </div>
+
+    <script>
+        const allQuestions = [
+            { question: "What is the capital of France?", options: ["Paris", "London", "Berlin", "Madrid"], answer: "Paris" },
+            { question: "Who wrote 'Hamlet'?", options: ["Shakespeare", "Tolstoy", "Homer", "Dante"], answer: "Shakespeare" },
+            { question: "What is the square root of 64?", options: ["6", "8", "10", "12"], answer: "8" },
+            { question: "Which planet is known as the Red Planet?", options: ["Mars", "Venus", "Jupiter", "Saturn"], answer: "Mars" },
+            { question: "What is the largest ocean on Earth?", options: ["Atlantic", "Indian", "Arctic", "Pacific"], answer: "Pacific" }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const questionObj = allQuestions[currentQuestion];
+            document.getElementById("question").textContent = `Q${currentQuestion + 1}: ${questionObj.question}`;
+            document.getElementById("options").innerHTML = questionObj.options
+                .map(option => `<button onclick="checkAnswer(this, '${option}')">${option}</button>`)
+                .join("");
+            document.getElementById("feedback").textContent = "";
+            document.getElementById("progress-bar").style.width = ((currentQuestion + 1) / allQuestions.length) * 100 + "%";
+            document.getElementById("next-btn").style.display = "none";
+        }
+
+        function checkAnswer(button, selectedAnswer) {
+            const correctAnswer = allQuestions[currentQuestion].answer;
+            const buttons = document.querySelectorAll(".options button");
+
+            buttons.forEach(btn => btn.disabled = true);
+
+            if (selectedAnswer === correctAnswer) {
+                score++;
+                button.style.backgroundColor = "green";
+                document.getElementById("feedback").textContent = "Correct!";
+            } else {
+                button.style.backgroundColor = "red";
+                document.getElementById("feedback").textContent = "Incorrect!";
+                buttons.forEach(btn => {
+                    if (btn.textContent === correctAnswer) {
+                        btn.style.backgroundColor = "green";
+                    }
+                });
+            }
+
+            document.getElementById("score-display").textContent = score;
+            document.getElementById("next-btn").style.display = currentQuestion < allQuestions.length - 1 ? "inline-block" : "none";
+
+            if (currentQuestion === allQuestions.length - 1) {
+                setTimeout(showResult, 1000);
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion < allQuestions.length) {
+                loadQuestion();
+            }
+        }
+
+        function showResult() {
+            const modal = document.getElementById("result-modal");
+            document.getElementById("result-message").textContent = `Quiz Over! Your score is ${score}/${allQuestions.length}.`;
+            modal.style.display = "block";
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById("result-modal").style.display = "none";
+            loadQuestion();
+        }
+
+        loadQuestion();
+    </script>
+</body>
+</html>
