@@ -1,5 +1,5 @@
 # Website Link: 
-https://coder024.github.io/Indian-Culture/
+[https://coder024.github.io/Indian-Culture/](https://teja-0504.github.io/mst-lab/indian-culture/)
 
 # Introduction:
 
