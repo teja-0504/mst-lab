@@ -56,6 +56,4 @@ Every state and city in India has it's own speciality. This section shows the Gr
 
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/72097687/174476104-6bf199b4-7b76-48af-8de6-5318549f5600.png">
 
-The footer of the website gives different links where the user can read about India's heritage and culture and the contact links of the creator of the website. 
 
-<img width="960" alt="image" src="https://user-images.githubusercontent.com/72097687/174476179-e9f8ebd3-a925-4e55-bd99-06351328581e.png">
