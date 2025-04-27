@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="indianCultureApp">
+
+<head>
+    <title>Indian Culture</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link type="text/css" rel="stylesheet" href="css/style.css" />
+    <link type="text/css" rel="stylesheet" href="css/font-awesome.min.css" />
+
+
+    <link type="image" rel="icon" href="https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/800px-Flag_of_India.svg.png?20111003033457" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,600,600i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,500i,600,600i" rel="stylesheet">
+
+    <!-- Include AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="MainController">
+
+    <div id="arrow">
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    </div>
+
+    <nav>
+        <div class="container">
+            <div class="menu-par">
+                <div class="logo-par">
+                    <a href="index.html">
+                        <h2>{{ appTitle }}</h2>
+                    </a>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a class="menu_hover" href="index.html">Home</a></li>
+                        <li><a class="menu_hover" href="#welcome_Sec">Heritage Sites</a></li>
+                        <li><a class="menu_hover" href="#explore-fiji">Travel With us</a></li>
+                        <li><a class="menu_hover" href="#fiji-holyday">Our Pride</a></li>
+                        <li><a class="menu_hover" href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="toggle-btn">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header>
+        <div class="conatiner">
+            <div class="home_header_info">
+                <h1 class="typewrite" data-period="2000" data-type='[ "Incredible!ndia", "Dekho Apna Desh!", " Explore the Indian Culture and Heritage." ]'>
+                    {{ headerMessage }}
+                </h1>
+                <p>{{ headerDescription }}</p>
+                <a href="https://indianculture.gov.in/">Read More</a>
+            </div>
+        </div>
+        <div class="video">
+            <video id="video" autoplay loop muted>
+                <source type="video/mp4" src="images/v1.mp4" />
+            </video>
+        </div>
+    </header>
+
+    <section id="welcome_Sec">
+        <div class="container">
+            <h2><span>{{ welcomeTitle }}</span></h2>
+            <p>{{ welcomeDescription }}</p>
+        </div>
+    </section>
+
+    <section id="slides_parent">
+        <div class="container">
+            <div class="slides">
+                <div class="slide_1" ng-class="'slide_' + ($index + 1)" ng-repeat="site in heritageSites">
+                    <div class="slide_info">
+                        <a ng-href="{{ site.link }}" target="_blank">
+                            <p>{{ site.name }}</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <section id="explore-fiji">
+        <center>
+            <h1>{{ mapTitle }}</h1>
+        </center>
+        <br><br>
+        <center>
+            <p>
+                <h4>{{ mapDescription }}</h4>
+            </p>
+        </center>
+        <br><br>
+        <center>
+            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1rWVL7-ObutJZd9PlLtzqS4kounhEzHg&ehbc=2E312F" width="60%" height="480"></iframe>
+        </center>
+    </section>
+
+    <section id="fiji-holyday">
+        <div class="container">
+            <h3>The Great Indian Cities</h3>
+            <ul class="card-wrapper">
+            <li class="card">
+                <img src='images/slider/delhi.jpg' alt=''>
+                <h3 style="color: black;"><a href="https://www.britannica.com/place/Delhi">Delhi</a></h3>
+                <p style="text-align: center;">The Capital of India</p>
+            </li>
+            <li class="card">
+                <img src='images/slider/mumbai.jpg' alt=''>
+                <h3 style="color: black;"><a href="https://www.britannica.com/place/Mumbai">Mumbai</a></h3>
+                <p style="text-align: center;">Financial Capital Of India</p>
+            </li>
+            <li class="card">
+                <img src='images/slider/banglore.jpg' alt=''>
+                <h3 style="color: black;"><a href="https://www.britannica.com/place/Bangalore-India">Bengaluru</a></h3>
+                <p style="text-align: center;">Silicon Valley Of India</p>
+            </li>
+            </ul>
+             
+        </div>
+    </section>
+
+    <section id="blog">
+        <div class="container">
+            <h3>Blogs and Articles</h3>
+            <div id="blog-par">
+                <div class="blog-content">
+                    <div class="blog-img">
+                        <img class="img-responsive" src="https://c.ndtvimg.com/2023-07/rmjkg64_indian-food_625x300_25_July_23.jpg?im=FaceCrop,algorithm=dnn,width=1200,height=886" />
+                    </div>
+                    <div class="blog-info">
+                        <ul>
+                            <li>CulturalIndia.net</li>
+                            
+                        </ul>
+                        <h4><a href="https://www.culturalindia.net/indian-food/">Cultural India : Indian Food</a></h4>
+                        <p>The traditional food of India has been widely appreciated for its fabulous use of herbs and spices. Indian cuisine is known for its large assortment of dishes.</p>
+                    </div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-img">
+                        <img class="img-responsive" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTayfiy5ZdbssjWkZXaC2JMkZ6Axqy_4CTHOg&usqp=CAU" />
+                    </div>
+                    <div class="blog-info">
+                        <ul>
+                            <li>NEXTIAS's Blog</li>
+                           
+                        </ul>
+                        <h4><a href="https://www.nextias.com/blog/indias-unity-in-diversity/">The Unity of India in Diversity : Religions</a></h4>
+                        <p>Diversity characterizes India. The diverse characters of India are strongly unified and perfectly assimilated to emerge as a one single nation.</p>
+                    </div>
+                </div>
+            </div>
+            <div id="blog-par">
+                <div class="blog-content">
+                    <div class="blog-img">
+                        <img class="img-responsive" src="https://media.licdn.com/dms/image/v2/C5612AQF2rS5u29nhlw/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1643987601071?e=2147483647&v=beta&t=dgU7uRORHVLkpk_2SNejhyPkHdvOJxpEQFt4krrK0eU" />
+                    </div>
+                    <div class="blog-info">
+                        <ul>
+                            <li>translatemedia</li>
+                            <li>31.05.2016</li>
+                        </ul>
+                        <h4><a href="https://www.translatemedia.com/translation-blog/look-indias-amazing-linguistic-diversity/" target="_blank">A Look at India’s Amazing Linguistic Diversity</a></h4>
+                        <p>India is a big country and it packs in an astonishing array of languages.
+                            
+                            It’s unlikely that any other country in the world matches India for 
+                            linguistic diversity.</p>
+                    </div>
+                </div>
+                
+                <div class="blog-content">
+                    <div class="blog-img">
+                        <img class="img-responsive" src="https://d.newsweek.com/en/full/1669799/diwali-celebrations.jpg?w=1600&h=900&q=88&f=a41dbae89faa01003f9e4686e91ebe4c" />
+                    </div>
+                    <div class="blog-info">
+                        <ul>
+                            <li>Treebo</li>
+                            <li>01.02.2018</li>
+                        </ul>
+                        <h4><a href="https://www.treebo.com/blog/religious-festivals-of-india/" target="_blank">The Spectrum of National festivals of India</a></h4>
+                        <p>Such diverse cultures, culminating such varied festivals and that too under the name of a single country; such is the greatness of Indian culture. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <p class="copyright"><b>Developed by Team 1</b><br><b>{{team}}</b></p>
+    </footer>
+
+    <script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="js/extrenaljq.js"></script>
+
+    <script>
+        var app = angular.module('indianCultureApp', []);
+    
+        app.controller('MainController', function ($scope) {
+            $scope.appTitle = "!NDIA";
+            $scope.headerMessage = "Explore the Indian Culture and Heritage.";
+            $scope.headerDescription = "India is a country dotted with stunning wildlife diversity, and rich traditions. While the Western coast greets you with mouth-watering delicacies, the East part invites you to experience its greenery.";
+            $scope.welcomeTitle = "Where science meets the sacred!";
+            $scope.welcomeDescription = "Witness the grand Architecture! How about taking your kids on an exploration of India's heritage this holiday season?";
+            $scope.mapTitle = "Locate top heritage sites in India!";
+            $scope.mapDescription = "This map depicts the top ten historical sites in India in terms of their geographical location. Click on any pointer to learn more about the place and to appreciate the diversity!";
+            
+            // Modified heritageSites: now an array of objects
+            $scope.heritageSites = [
+                { name: "Modhera Sun Temple", link: "https://en.wikipedia.org/wiki/Sun_Temple,_Modhera" },
+                { name: "Adi Annamalai temple", link: "https://en.wikipedia.org/wiki/Adi_Annamalai_Temple" },
+                { name: "Western Ghats", link: "https://en.wikipedia.org/wiki/Western_Ghats" },
+                { name: "Red Fort", link: "https://en.wikipedia.org/wiki/Red_Fort" },
+                { name: "Chhatrapati Shivaji Terminus", link: "https://en.wikipedia.org/wiki/Chhatrapati_Shivaji_Terminus" },
+                { name: "Bandipur National Park", link: "https://en.wikipedia.org/wiki/Bandipur_National_Park" },
+                { name: "Ganga Aarti", link: "https://en.wikipedia.org/wiki/Ganga_Aarti" }
+            ];
+    
+            $scope.team = "G.M.V.S.Teja, J.D.S.Karthikeya, G.Teja, B.Jahnavi";
+        });
+    </script>
+    
+</body>
+
+</html>
