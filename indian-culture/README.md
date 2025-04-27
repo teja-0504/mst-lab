@@ -1,5 +1,5 @@
 # Website Link: 
-(https://teja-0504.github.io/mst-lab/indian-culture
+https://teja-0504.github.io/mst-lab/indian-culture
 
 # Introduction:
 
